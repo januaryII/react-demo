@@ -1,0 +1,9 @@
+/* @import '~antd/dist/antd.css';  */
+.loginForm{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 300px;
+    margin: -250px 0px 0px -150px;
+}
