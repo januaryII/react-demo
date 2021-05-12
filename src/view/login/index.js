@@ -21,6 +21,7 @@ export  class Login extends Component{
     }
     onFinish = (values) => {
         console.log('Success:', values);
+        sessionStorage.setItem("isLogin",true)
         // 获取this.props.history.location.query
         this.props.history.push({
             pathname: '/home',
@@ -30,7 +31,7 @@ export  class Login extends Component{
             //     a: 1
             // }
         })
-        sessionStorage.setItem("isLogin",true)
+       
         // this.props.history.push('/login/params')
         // params Route需配置path="/login/:params"  获取this.props.match.params
       };

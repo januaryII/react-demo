@@ -1,21 +1,7 @@
 import { Menu, Dropdown } from 'antd';
-// const Menu = Menu;
-// import {SubMenu} from Menu;
-// const { SubMenu } = Menu;
-import { UserOutlined } from '@ant-design/icons';
 import React, { Component } from 'react';
-const menu = (
-    <Menu>
-        <Menu.Item key="0">
-            个人中心
-      </Menu.Item>
-        <Menu.Item key="1">
-            登出
-      </Menu.Item>
-        {/* <Menu.Divider /> */}
-    </Menu>
-);
-export class Nav extends Component {
+import {withRouter} from 'react-router-dom';
+class NavComponent extends Component {
 
     state = {
         current: '1'
@@ -26,7 +12,8 @@ export class Nav extends Component {
         this.setState({
             current: e.key,
         });
-        // this.props.history.push(e.key);
+
+        this.props.history.push(e.key);
         // this.props.history.push(e.key)
     };
     render() {
@@ -34,17 +21,17 @@ export class Nav extends Component {
         return (
             <div>
                 <Menu
-                    theme='dark'
+                    style={{maxWidth: 256}}
+                    theme='light'
                     onClick={this.handleClick}
-                    style={{ width: '100vw' }}
                     defaultOpenKeys={['sub1']}
                     selectedKeys={[this.state.current]}
-                    mode="horizontal"
+                    mode="vertical"
                 >
                     {
                         this.props.navList.map((item, index) => {
                             return (
-                                <Menu.Item key={item.path}>{item.name}</Menu.Item>
+                                <Menu.Item key={item.path} >{item.name}</Menu.Item>
                             )
                         })
                     }
@@ -66,11 +53,9 @@ export class Nav extends Component {
                 <div
                     style={{ position: 'absolute', top: '10px', right: '50px', color: '#fff' }}
                 >
-                    <Dropdown overlay={menu}>
-                        <UserOutlined />
-                    </Dropdown>
                 </div>
             </div>
         )
     }
 }
+export let Nav = withRouter(NavComponent);

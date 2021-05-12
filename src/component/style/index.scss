@@ -1,0 +1,21 @@
+// 变量声明
+$color: #fff;
+$background: #ed6f2c;
+// 混入
+@mixin border($color){
+    border: 2px solid $color;
+} 
+.text{
+    @include border(#efefef);
+}
+
+// 继承
+.span{
+    @extend .text;
+}
+.data-list{
+    display: flex;
+    .data-child{
+        flex: 1
+    }
+}

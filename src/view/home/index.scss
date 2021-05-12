@@ -1,0 +1,31 @@
+@mixin float($f){
+    float: $f;
+}
+$background: rgb(87, 119, 156);
+$color: #fff;
+header{
+    // display: flex;
+    width: 100%;
+    padding: 20px;
+    background: $background;
+    color: $color;
+    overflow: hidden;
+    .header-child{
+        width: 50%;
+        // flex: 1;
+        // justify-content: space-around;
+    }
+    .header-child:nth-child(1){
+        float: left;
+    }
+    .header-child:nth-child(2){
+        float: right;
+        .anticon-user{
+            @include float(right)
+        }
+    }
+}
+.content{
+    display: flex;
+    margin: 20px;
+}
