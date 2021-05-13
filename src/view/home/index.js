@@ -2,13 +2,24 @@ import React,{Component} from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import {Menu,Dropdown} from 'antd';
 import {Nav} from '../../component/common/nav';
-import {Switch,Route,Redirect} from 'react-router-dom';
+import {Switch,Route,Redirect,Link} from 'react-router-dom';
 import routers from '../../router/index';
 import './index.scss'; 
+const linkData = {
+    name: "个人中心"
+}
 const menu = (
     <Menu>
-        <Menu.Item key="0">
+        <Menu.Item key="0" >
+        {/* this.props.location.state.name */}
+        <Link   to={{
+      pathname: '/userCenter',
+      search: `?name=${JSON.stringify(linkData)}`,
+      state: { price: 18 }
+    }} 
+> 
             个人中心
+        </Link>
       </Menu.Item>
         <Menu.Item key="1">
             登出
@@ -24,11 +35,13 @@ export class Home extends Component{
         },{
             name: "区域管理",
             path: "/home/region"
-        },{
-            name: "权限管理",
-            // path: "/home/authority"
-            path: "/home/hook"
-        }]
+        },
+        // {
+        //     name: "权限管理",
+        //     // path: "/home/authority"
+        //     path: "/home/hook"
+        // }
+    ]
     }
     render(){
         const currentRouter = routers.find(item => item.name === 'home');

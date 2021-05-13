@@ -14,7 +14,10 @@ class NavComponent extends Component {
         });
 
         this.props.history.push(e.key);
-        // this.props.history.push(e.key)
+
+        // <Route path=' /sort/:id '   component={Sort}></Route>
+        // this.props.history.push(  '/sort/'+'2'  )
+        // this.props.match.params.id 
     };
     render() {
         console.log(this)

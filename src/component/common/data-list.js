@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'antd'
 import '../style/index.scss'
 export class DataList extends Component {
     state = {
@@ -48,6 +49,9 @@ export class DataList extends Component {
         }
 
     }
+    changeParentModal(e, item) {
+        this.props.changeParent.getChild(e, item)
+    }
     render() {
         return (
             <div>
@@ -58,15 +62,17 @@ export class DataList extends Component {
                     <div className="data-child">操作</div>
                 </div>
                 {
-                    this.props.dataList.map((item,index)=>{
+                    this.props.dataList.map((item, index) => {
                         return (
                             <div className="data-list" key={index}>
-                                {/* <React.Fragment key={index}> */}
+                                {/* <React.Fragment key={index}> onClick={(e,item)=>this.changeParentModal(e,item)} */}
                                 <div className="data-child">{item.place}</div>
                                 <div className="data-child">{item.number}</div>
                                 <div className="data-child">{item.passwork}</div>
-                                <div className="data-child">
-                                    <span>删除</span>
+                                <div className="data-child" >
+                                    <Button onClick={(e) => this.changeParentModal(e, item)} size="small">
+                                        删除
+                             </Button>
                                 </div>
                                 {/* </React.Fragment> */}
                             </div>
