@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import { UserOutlined } from '@ant-design/icons';
-import {Menu,Dropdown} from 'antd';
+import {Menu,Dropdown,Modal} from 'antd';
+import { connect } from 'react-redux';
+import actionTest from '../../store/actions.js';
 import {Nav} from '../../component/common/nav';
 import {Switch,Route,Redirect,Link} from 'react-router-dom';
 import routers from '../../router/index';
@@ -21,13 +23,13 @@ const menu = (
             个人中心
         </Link>
       </Menu.Item>
-        <Menu.Item key="1">
+        <Menu.Item key="1" >
             登出
       </Menu.Item>
         {/* <Menu.Divider /> */}
     </Menu>
 );
-export class Home extends Component{
+class HomeComponent extends Component{
     state={
         navList: [{
             name: "用户管理",
@@ -36,14 +38,28 @@ export class Home extends Component{
             name: "区域管理",
             path: "/home/region"
         },
+        
         // {
         //     name: "权限管理",
         //     // path: "/home/authority"
         //     path: "/home/hook"
         // }
-    ]
+    ],
+    isModalVisible: false
     }
+    handleOk = () => {
+        this.setState({
+            isModalVisible: false
+        })
+    };
+    handleCancel = () => {
+        this.setState({
+            isModalVisible: false
+        })
+    };
     render(){
+        console.log(actionTest,'actionTest')
+        const [loginModalStatus,changeStatus] = this.props;
         const currentRouter = routers.find(item => item.name === 'home');
         console.log(this.props.history,'we')
         return( 
@@ -73,9 +89,47 @@ export class Home extends Component{
                         <Redirect to="/home/user"/>
                     </Switch>
                     </div>
+
+                <Modal title="delete Modal" visible={loginModalStatus} footer={null} onOk={this.handleOk} onCancel={this.handleCancel}>
+                    <p>确定删除</p>
+                    {/* <Button type="primary" onClick={(e) => { this.changeChildData(e, 'del') }}>delete</Button> */}
+                </Modal>
+                <div onClick={()=>changeStatus({status: true})}>change</div>
                 </div>
             </div>
-            
         )
     }
 }
+
+
+// // 将store数据映射到mapStateToProps，mapDispatchToProps。便于界面使用。
+const mapStateToProps = (state,props) =>{
+    return {
+        loginModalStatus: state.loginModalStatus
+    }
+}
+const mapDispatchToProps = dispatch=>{
+    // return{
+    //     changeStatus: status => {
+    //         dispatch({
+    //             type: CHANGE_LOGIN_MODAL_STATUS,status
+    //         })
+    //     }
+    // }
+    return {
+        changeStatus(status) {
+            dispatch(actionTest.changeStatus(status))
+        },
+        // addQty(id) {
+        //     dispatch(cartAction.addQty(id))
+        // },
+        // reduceQty(id) {
+        //     dispatch(cartAction.reduceQty(id))
+        // },
+        // clear() {
+        //     dispatch(cartAction.clear())
+        // },
+
+    }
+}
+export const Home = connect(mapStateToProps,mapDispatchToProps)(HomeComponent)
