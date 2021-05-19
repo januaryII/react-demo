@@ -7,8 +7,8 @@ import loginReducer from './login-reducer';
 
 // 把多个reducer组合成一个reducer
  
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
     loginStatus: loginReducer,
     // showNav: navReducer
 });
-// export default rootReducer;
+export default rootReducer;

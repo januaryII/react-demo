@@ -103,4 +103,3 @@ export class User extends Component {
         )
     }
 }
-// export let User = withRouter(UserComponent);

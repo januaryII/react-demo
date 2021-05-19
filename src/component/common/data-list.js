@@ -37,15 +37,12 @@ export class DataList extends Component {
 
     }
     componentDidMount() {
-        // let dataArr = [];
         if (this.props.dataList && this.props.dataList.length) {
-            // dataArr = this.props.dataArr;
             this.setState({
                 dataList: this.props.dataList
             })
         }
         else {
-            // dataArr = this.state.dataArr;
         }
 
     }

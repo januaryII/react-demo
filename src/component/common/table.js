@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//{  Table, Radio, Divider  } = antd;
 import {Table, Radio, Divider} from 'antd'
 const columns = [
   {
@@ -56,7 +55,6 @@ const rowSelection = {
 };
 
 export const TableDemo = () => {
-    console.log(this,'5423')
   const [selectionType, setSelectionType] = useState('checkbox');
   return (
     <div>
@@ -84,5 +82,4 @@ export const TableDemo = () => {
   );
 };
 
-// ReactDOM.render(<Demo />, mountNode);
 

@@ -15,9 +15,13 @@ let reducer = function(state = defalutData,action){
     let {type,payload} = action;
     switch(type){
         case CHANGE_LOGIN_MODAL_STATUS:
-            return {
-                ...state,loginModalStatus: state.loginModalStatus
-            }
+            console.log(state,'action',action)
+            // return {
+            //     ...state,
+            //     // loginModalStatus: state.loginModalStatus
+            //     loginModalStatus: action.loginModalStatus
+            // }
+            return Object.assign({}, state, { loginModalStatus: payload.loginModalStatus });
         // case SOME_THING_FORM_AJAX_PARAMS:
         //     return Object.assign({}, state, { count: action.count });
         default: 

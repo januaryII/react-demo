@@ -53,13 +53,17 @@ class HomeComponent extends Component{
         })
     };
     handleCancel = () => {
-        this.setState({
-            isModalVisible: false
-        })
+        console.log(this.props)
+        // 改变redux状态
+        this.props.change({loginModalStatus: false})
+        // this.setState({
+        //     isModalVisible: false
+        // })
     };
     render(){
-        console.log(actionTest,'actionTest')
-        const [loginModalStatus,changeStatus] = this.props;
+        console.log(actionTest,'actionTest',this.props)
+        const {loginModalStatus,change} = this.props;
+        console.log(loginModalStatus,change)
         const currentRouter = routers.find(item => item.name === 'home');
         console.log(this.props.history,'we')
         return( 
@@ -90,11 +94,11 @@ class HomeComponent extends Component{
                     </Switch>
                     </div>
 
-                <Modal title="delete Modal" visible={loginModalStatus} footer={null} onOk={this.handleOk} onCancel={this.handleCancel}>
+                <Modal title="delete Modal" visible={loginModalStatus} footer={null} onOk={this.handleOk} maskClosable={false}  onCancel={this.handleCancel}>
                     <p>确定删除</p>
                     {/* <Button type="primary" onClick={(e) => { this.changeChildData(e, 'del') }}>delete</Button> */}
                 </Modal>
-                <div onClick={()=>changeStatus({status: true})}>change</div>
+                <div onClick={(()=>{change({loginModalStatus: true})})}>change --- {JSON.stringify(loginModalStatus)}</div>
                 </div>
             </div>
         )
@@ -103,9 +107,10 @@ class HomeComponent extends Component{
 
 
 // // 将store数据映射到mapStateToProps，mapDispatchToProps。便于界面使用。
-const mapStateToProps = (state,props) =>{
+const mapStateToProps = (state) =>{
+    console.log(state,'state')
     return {
-        loginModalStatus: state.loginModalStatus
+        loginModalStatus: state.loginStatus.loginModalStatus
     }
 }
 const mapDispatchToProps = dispatch=>{
@@ -117,8 +122,8 @@ const mapDispatchToProps = dispatch=>{
     //     }
     // }
     return {
-        changeStatus(status) {
-            dispatch(actionTest.changeStatus(status))
+        change(loginModalStatus) {
+            dispatch(actionTest.change(loginModalStatus))
         },
         // addQty(id) {
         //     dispatch(cartAction.addQty(id))

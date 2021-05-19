@@ -38,20 +38,6 @@ class NavComponent extends Component {
                             )
                         })
                     }
-
-                    {/* <SubMenu key="sub1" title="Navigation One">
-                        <Menu.Item key="1">Option 1</Menu.Item>
-                        <Menu.Item key="2">Option 2</Menu.Item>
-                        <Menu.Item key="3">Option 3</Menu.Item>
-                        <Menu.Item key="4">Option 4</Menu.Item>
-                    </SubMenu>
-                    <SubMenu key="sub1"  title="Navigation One">
-                        <Menu.Item key="1">Option 1</Menu.Item>
-                        <Menu.Item key="2">Option 2</Menu.Item>
-                        <Menu.Item key="3">Option 3</Menu.Item>
-                        <Menu.Item key="4">Option 4</Menu.Item>
-                    </SubMenu> */}
-
                 </Menu>
                 <div
                     style={{ position: 'absolute', top: '10px', right: '50px', color: '#fff' }}

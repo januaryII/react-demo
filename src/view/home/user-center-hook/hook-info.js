@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-// import {StarOutlined} from 'antd';
 export const HookInfo = props => {
     const [info,setInfo] = useState(null);
     console.log(props, 'p')
